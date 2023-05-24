@@ -11,7 +11,7 @@ function showNew(){
       <p>Ingrese un texto: </p>
       <textarea rows='20' cols='100' id="text" name="texto" required></textarea><br>
       <button onclick="doNew()">Enviar</button>
-      <button onclick="">Cancelar</button>
+      <button onclick="showWelcome()">Cancelar</button>
       `;
   document.querySelector('#main').innerHTML = formhtml;
 }

@@ -16,11 +16,3 @@ function showWelcome(){
           </ul>`;
   document.getElementById('main').innerHTML = html;
 }
-
-function showMenuUserLogged(){
-  let html = "<p onclick='showWelcome()'>Inicio</p>\n"+
-    "<p onclick='doList()'>Lista de Páginas</p>\n"+
-    "<p onclick='showNew()' class='rightcolumn'>Página Nueva</p>\n"
-  document.getElementById('menu').innerHTML = html;
-}
-
