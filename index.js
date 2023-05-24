@@ -4,7 +4,6 @@ const app = express();
 app.use(express.static('client'));
 app.listen(3000, () => {
     console.log("Escuchando en: http://localhost:3000")
-
 });
 
 app.get('/', (request, response) => {
