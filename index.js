@@ -1,3 +1,4 @@
+const fs = require('fs')
 const path = require('path');
 const express = require('express');
 const app = express();
@@ -13,7 +14,27 @@ app.get('/', (request, response) => {
     response.sendFile(path.resolve(__dirname, 'index.html'));
 });
 
-const markdownText = '# Título';
-const htmlText = md.render(markdownText);
-
-console.log(htmlText);
+app.post('/create', (request, response) => {
+    const { markdownText, fileName } = request.body;
+  
+    console.log(request.body);
+    console.log(markdownText);
+  
+    try {
+      const htmlText = md.render(markdownText);
+      const filePath = `markdown/${fileName}.txt`;
+  
+      fs.writeFileSync(filePath, htmlText);
+  
+      response.setHeader('Content-Type', 'application/json');
+      response.end(JSON.stringify({
+        message: 'File saved successfully'
+      }));
+    } catch (error) {
+      console.error(error);
+  
+      response.status(500).json({
+        error: 'Error saving the file'
+      });
+    }
+});
