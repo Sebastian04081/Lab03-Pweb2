@@ -27,7 +27,7 @@ app.get('/', (request, response) => {
 app.post('/create', (request, response) => {
   try {
     const { text, name } = request.body;
-    
+
     const htmlText = md.render(text);
     const ruta = path.join(__dirname, 'markdown', `${name}.txt`);
     fs.writeFileSync(ruta, htmlText);
@@ -39,3 +39,13 @@ app.post('/create', (request, response) => {
     response.status(500).json({ error: 'Error al guardar el archivo' });
   }
 });
+
+app.get('/listar', (request, response) => {
+  const ruta = 'markdown';
+  let list = fs.readdirSync(ruta);
+  console.log(list);
+  response.setHeader('Content-Type', 'application/json')
+  response.end(JSON.stringify({
+    lista: list 
+  }))
+})

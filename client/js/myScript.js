@@ -49,3 +49,22 @@ function doNew(){
     console.error("Error:", error);
   });
 }
+
+function listFilesMarkdown() {
+  let url = "http://localhost:3000/list"
+
+  fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    console.log(data.lista);
+    let lista = data.lista
+    let html = `<ul>`
+    for(let i=0;i<lista.length; i++) {
+      html += `<li onclick="verContenido('${i+1}')" id="${i+1}">${lista[i]}</li>`
+    }
+    html += `</ul>`
+    
+    document.getElementById("main").innerHTML = html
+
+  })
+}
